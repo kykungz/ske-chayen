@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SKE-Chayennnnnn</title>
 
+    <script src="/socket.io/socket.io.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -18,13 +20,11 @@
       <h1>ควาย</h1>
     </div>
     <!---->
+
     <script type="text/javascript">
       $(function() {
-        var socket = io.connect('http://localhost');
-        socket.on('news', function (data) {
-          console.log(data);
-          socket.emit('my other event', { my: 'data' });
-        });
+        var socket = io.connect('http://localhost:8080');
+
         socket.on('correct', function (data) {
           // TODO: event when it is correct
         });

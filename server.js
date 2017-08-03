@@ -9,31 +9,35 @@ const PORT = process.env.PORT || 8080
 
 app.use(express.static('./src'))
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/src/index.html');
 });
 
-app.get('/remote', function (req, res) {
+app.get('/remote', (req, res) => {
   res.sendFile(__dirname + '/src/remote.html');
 });
 
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
+io.on('connection', (socket) => {
 
-  socket.on('correct', function (data) {
-    console.log(data);
-  });
+  socket.on('remote', (data) => {
+    console.log(data.correct);
+    if (data.correct) {
 
-  socket.on('wrong', function (data) {
-    console.log(data);
-  });
+    } else {
 
-  socket.on('next', function (data) {
-    console.log(data);
-  });
+    }
+  })
 
-  socket.on('back', function (data) {
-    console.log(data);
+  socket.on('question', (data) => {
+    switch (data) {
+      case 'next':
+        console.log('next');
+        break;
+      case 'back':
+        console.log('back');
+        break;
+      default:
+    }
   });
 
 });
