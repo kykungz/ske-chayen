@@ -14,12 +14,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
   </head>
-  <body style="background-color:rgb(62, 154, 191)">
+  <body style="background-color:#00d2f7">
     <!-- TODO: Write User Interface Here -->
     <div class="container text-center">
-      <h1 id="t">เวลา</h1>
-      <h1 id="s">score</h1>
-      <h1 id="q">คำใบ้</h1>
+<!--       <h1 style="font-size: 180px" id="t">เวลา</h1>
+ -->      <h1 style="font-size: 100px" id="s">score</h1>
+
+      <h1 style="margin-top:100px;font-size: 140px" id="q">คำใบ้</h1>
     </div>
     <!---->
 
@@ -39,7 +40,7 @@
               var time = data.time // เวลา
               // TODO: อัพเดทข้อมูล
               $('#q').text(question)
-              $('#s').text(score)
+              $('#s').text('Score: ' + score)
               $('#t').text(time)
 
               break;
