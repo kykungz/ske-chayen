@@ -7,10 +7,11 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
 const PORT = process.env.PORT || 8080
+const TIME = 30 * 1000
 let score = 0
 let questions
 let question
-
+let time = 0
 // read text file
 const QUESTIONS = new JFile('./words.txt').lines
 if (!QUESTIONS[QUESTIONS.length - 1]) {
@@ -24,27 +25,39 @@ const game = {
     question = questions.splice(index, 1)[0]
   },
   update () {
-    this.nextQuestion()
     let context = {
       action: 'update',
       question,
-      score
+      score,
+      time: TIME/1000 - time/1000
     }
-    console.log(context)
     io.emit('game', context)
   },
-  restart () {
+  reset () {
     questions = QUESTIONS.slice()
+    time = 0
+    score = 0
   },
   start() {
     this.running = true
+    this.nextQuestion()
+    let timer = setInterval(() => {
+      time += 1000
+      this.update()
+      if (time >= TIME) {
+        clearInterval(timer)
+        this.stop()
+        this.reset()
+      }
+    }, 1000)
   },
   stop () {
     this.running = false
+    io.emit('game', {action: 'stop'})
   }
 }
 
-game.restart()
+game.reset()
 
 app.use(express.static('./src'))
 
@@ -68,21 +81,12 @@ io.on('connection', (socket) => {
         break
       case 'correct':
         score++
+        game.nextQuestion()
         game.update()
         break
       case 'skip':
+        game.nextQuestion()
         game.update()
-        break
-      default:
-    }
-  })
-
-  socket.on('game', (data) => {
-    console.log(data)
-    switch (data.action) {
-      case 'stop': // game ended
-        game.stop()
-        game.restart()
         break
       default:
     }

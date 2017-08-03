@@ -53,6 +53,13 @@
 
       var socket = io();
 
+      socket.on('game', function (data) {
+        if (data.action === 'stop') {
+          $('#before-start').show();
+          $('#after-start').hide();
+        }
+      });
+
       $('#start').click(function () {
         $('#before-start').hide();
         $('#after-start').show();
