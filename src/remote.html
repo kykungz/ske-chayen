@@ -18,24 +18,43 @@
 
 <body>
 
-  <div id="before-start">
+   <div id="before-start">
     <div class="container">
       <div class="center">
-        <div class="row">
+        <div class="half-vertical-screen">
           <h1>SKE CHAYEN GAME</h1>
         </div>
-        <div class="row">
-        <button type="button" class="btn btn-success start-btn">START</button>
+        <div class="half-vertical-screen">
+          <button type="button" class="btn btn-success full-btn" id="start">START</button>
         </div>
       </div>
     </div>
-  </div>
+  </div> 
 
-  <div id="after-start">
-
-  </div>
+   <div id="after-start">
+    <div class="container">
+      <div id="word" class="center twenty-percent">
+        <h1>example text</h1>
+      </div>
+      <div class="eighty-percent">
+        <div class="half-horizontal-screen">
+          <button type="button" class="btn btn-success full-horizontal-btn" id="correct"><h3>CORRECT</h3></button>
+        </div>
+        <div class="half-horizontal-screen">
+          <button type="button" class="btn btn-danger full-horizontal-btn" id="skip"><h3>SKIP</h3></button>
+        </div>
+      </div>
+    </div>
+  </div> 
 
   <script type="text/javascript">
+    $('#after-start').hide();
+
+    $('#start').click(()=>{
+      $('#before-start').hide();
+      $('#after-start').show();
+    });
+
     $(function () {
       var socket = io.connect('http://localhost:8080');
 
