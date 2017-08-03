@@ -18,7 +18,7 @@
 
 <body>
 
-   <div id="before-start">
+  <div id="before-start">
     <div class="container">
       <div class="center">
         <div class="half-vertical-screen">
@@ -29,9 +29,9 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 
-   <div id="after-start">
+  <div id="after-start">
     <div class="container">
       <div id="word" class="center twenty-percent">
         <h1>example text</h1>
@@ -45,21 +45,20 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 
   <script type="text/javascript">
-    $('#after-start').hide();
-
-    $('#start').click(()=>{
-      $('#before-start').hide();
-      $('#after-start').show();
-    });
-
     $(function () {
+      $('#after-start').hide();
+
       var socket = io.connect('http://localhost:8080');
 
-      // คำสั่งสำหรับส่งไปบอก server ว่า start (เริ่มจับเวลา)
-      socket.emit('remote', { action: 'start' });
+      $('#start').click(() => {
+        $('#before-start').hide();
+        $('#after-start').show();
+        // คำสั่งสำหรับส่งไปบอก server ว่า start (เริ่มจับเวลา)
+        socket.emit('remote', { action: 'start' });
+      });
 
       // คำสั่งสำหรับส่งไปบอก server ว่าถูก
       socket.emit('remote', { action: 'correct' });
