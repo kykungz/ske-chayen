@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SKE-Chayennnnnn</title>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  </head>
+  <body style="background-color:rgb(62, 154, 191)">
+    <!-- TODO: Write User Interface Here -->
+    <div class="container text-center">
+      <h1 id="t">ทีมน้ำเงิน</h1>
+      <h1 style="font-size: 120px" id="s">0</h1>
+    </div>
+    <!---->
+
+    <script type="text/javascript">
+      $(function() {
+        var socket = io();
+
+        // main logic
+        socket.on('game', function (data) {
+          switch (data.action) {
+            case 'update':
+
+              var score = data.score // คะแนน
+
+              $('#s').text(score)
+
+
+              break;
+          }
+        });
+
+      })
+    </script>
+  </body>
+</html>

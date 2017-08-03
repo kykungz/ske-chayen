@@ -65,6 +65,10 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/src/index.html')
 })
 
+app.get('/status', (req, res) => {
+  res.sendFile(__dirname + '/src/status.html')
+})
+
 app.get('/remote', (req, res) => {
   res.sendFile(__dirname + '/src/remote.html')
 })
