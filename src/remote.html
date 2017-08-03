@@ -7,7 +7,7 @@
     <title>Chayen Remote Controller</title>
 
     <script src="/socket.io/socket.io.js"></script>
-
+    <link rel="stylesheet" href="./remote.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -17,7 +17,7 @@
   <body>
     <div class="container">
       <div class="jumbotron">
-        <h1>Hello, world!</h1>
+        <h1>SKE CHAYEN GAME</h1>
         <p></p>
       </div>
     </div>
@@ -31,7 +31,7 @@
         socket.emit('remote', {correct: true});
 
         // คำสั่งสำหรับส่งไปบอก server ว่าผิด
-        socket.emit('remote', {correct: false});
+        // socket.emit('remote', {correct: false});
 
         // คำสั่งสำหรับส่งไปบอก server ว่า start (เริ่มจับเวลา)
         socket.emit('question', {action: 'start'});
