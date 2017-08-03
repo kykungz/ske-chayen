@@ -25,18 +25,25 @@
       $(function() {
         var socket = io.connect('http://localhost:8080');
 
-        socket.on('correct', function() {
-          // TODO: event when it is correct
+        // main logic
+        socket.on('game', function (data) {
+          switch (data.action) {
+            case 'start':
+              // TODO: เริ่มเกม logic จับเวลา อยู่ในนี้
+
+              break;
+            case 'update':
+              var question = data.question // คำถาม
+              var score = data.score // คะแนน
+              // TODO: อัพเดทข้อมูล
+
+              break;
+          }
         });
-        socket.on('wrong', function() {
-          // TODO: event when it is wrong
-        });
-        socket.on('next', function() {
-          // TODO: event when it is next
-        });
-        socket.on('back', function() {
-          // TODO: event when it is back
-        });
+
+        // TODO: เรียกคำสั่งนี้ตอนเวลาหมด
+        socket.emit('game', {action: 'stop'});
+
       })
     </script>
   </body>
