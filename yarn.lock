@@ -264,6 +264,10 @@ isarray@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-2.0.1.tgz#a37d94ed9cda2d59865c9f76fe596ee1f338741e"
 
+jfile@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/jfile/-/jfile-1.1.12.tgz#95096a8b55bbe8a745ef23fa5770c817d12684ae"
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
