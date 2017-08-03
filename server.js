@@ -7,17 +7,35 @@ const io = require('socket.io')(server);
 
 const PORT = process.env.PORT || 8080
 
-
+app.use(express.static('./src'))
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/src/index.html');
+});
+
+app.get('/remote', function (req, res) {
+  res.sendFile(__dirname + '/src/remote.html');
 });
 
 io.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
+
+  socket.on('correct', function (data) {
     console.log(data);
   });
+
+  socket.on('wrong', function (data) {
+    console.log(data);
+  });
+
+  socket.on('next', function (data) {
+    console.log(data);
+  });
+
+  socket.on('back', function (data) {
+    console.log(data);
+  });
+
 });
 
 server.listen(PORT, () => {
