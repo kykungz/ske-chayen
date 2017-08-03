@@ -1,5 +1,7 @@
-# เขียนหน้า src/index.html ให้หน่อย
-# เขียนหน้า src/remote.html ให้หน่อย
+# เขียน Frontend หน้า src/index.html ให้หน่อย
+# เขียน Frontend หน้า src/remote.html ให้หน่อย
+# เขียน Frontend หน้า src/status.html ให้หน่อย
+
 # Installation
 Copy คำสั่งไปวาง
 ```
