@@ -18,6 +18,7 @@ if (!QUESTIONS[QUESTIONS.length - 1]) {
 }
 
 const game = {
+  running: false,
   nextQuestion () {
     let index = Math.floor(Math.random() * questions.length)
     question = questions.splice(index, 1)[0]
@@ -29,13 +30,21 @@ const game = {
       question,
       score
     }
-    console.log('sending to index.html')
+    console.log(context)
     io.emit('game', context)
   },
   restart () {
     questions = QUESTIONS.slice()
+  },
+  start() {
+    this.running = true
+  },
+  stop () {
+    this.running = false
   }
 }
+
+game.restart()
 
 app.use(express.static('./src'))
 
@@ -52,7 +61,10 @@ io.on('connection', (socket) => {
     console.log(data)
     switch (data.action) {
       case 'start':
-        io.emit('game', {action: 'start'})
+        if (!game.running) {
+          game.start()
+          io.emit('game', {action: 'start'})
+        }
         break
       case 'correct':
         score++
@@ -69,6 +81,7 @@ io.on('connection', (socket) => {
     console.log(data)
     switch (data.action) {
       case 'stop': // game ended
+        game.stop()
         game.restart()
         break
       default:

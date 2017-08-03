@@ -51,21 +51,21 @@
     $(function () {
       $('#after-start').hide();
 
-      var socket = io.connect('http://localhost:8080');
+      var socket = io();
 
-      $('#start').click(() => {
+      $('#start').click(function () {
         $('#before-start').hide();
         $('#after-start').show();
         // คำสั่งสำหรับส่งไปบอก server ว่า start (เริ่มจับเวลา)
         socket.emit('remote', { action: 'start' });
       });
 
-      $('#correct').click(() => {
+      $('#correct').click(function () {
         // คำสั่งสำหรับส่งไปบอก server ว่าถูก
         socket.emit('remote', { action: 'correct' });
       })
 
-      $('#skip').click(() => {
+      $('#skip').click(function () {
         // คำสั่งสำหรับส่งไปบอก server ว่าข้ามท
         socket.emit('remote', { action: 'skip' });
       })

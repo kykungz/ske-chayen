@@ -17,13 +17,13 @@
   <body style="background-color:rgb(62, 154, 191)">
     <!-- TODO: Write User Interface Here -->
     <div class="container text-center">
-      <h1>ควาย</h1>
+      <h1 id="q">ควาย</h1>
     </div>
     <!---->
 
     <script type="text/javascript">
       $(function() {
-        var socket = io.connect('http://localhost:8080');
+        var socket = io();
 
         // main logic
         socket.on('game', function (data) {
@@ -36,7 +36,7 @@
               var question = data.question // คำถาม
               var score = data.score // คะแนน
               // TODO: อัพเดทข้อมูล
-
+              $('#q').text(question)
               break;
           }
         });
