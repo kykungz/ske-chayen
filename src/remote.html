@@ -25,24 +25,15 @@
     <script type="text/javascript">
       $(function() {
         var socket = io.connect('http://localhost:8080');
-
+        
+        // คำสั่งสำหรับส่งไปบอก server ว่า start (เริ่มจับเวลา)
+        socket.emit('remote', {action: 'start'});
 
         // คำสั่งสำหรับส่งไปบอก server ว่าถูก
-        socket.emit('remote', {correct: true});
+        socket.emit('remote', {action: 'correct'});
 
-        // คำสั่งสำหรับส่งไปบอก server ว่าผิด
-        socket.emit('remote', {correct: false});
-
-        // คำสั่งสำหรับส่งไปบอก server ว่า start (เริ่มจับเวลา)
-        socket.emit('question', {action: 'start'});
-
-        // คำสั่งสำหรับส่งไปบอก server ว่า next (เผื่อกดผิด)
-        socket.emit('question', {action: 'next'});
-
-        // คำสั่งสำหรับส่งไปบอก server ว่า back (เผื่อกดผิด)
-        socket.emit('question', {action: 'back'});
-
-
+        // คำสั่งสำหรับส่งไปบอก server ว่าข้ามท
+        socket.emit('remote', {action: 'skip'});
 
       })
     </script>
