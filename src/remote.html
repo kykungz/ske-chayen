@@ -60,11 +60,15 @@
         socket.emit('remote', { action: 'start' });
       });
 
-      // คำสั่งสำหรับส่งไปบอก server ว่าถูก
-      socket.emit('remote', { action: 'correct' });
+      $('#correct').click(() => {
+        // คำสั่งสำหรับส่งไปบอก server ว่าถูก
+        socket.emit('remote', { action: 'correct' });
+      })
 
-      // คำสั่งสำหรับส่งไปบอก server ว่าข้ามท
-      socket.emit('remote', { action: 'skip' });
+      $('#skip').click(() => {
+        // คำสั่งสำหรับส่งไปบอก server ว่าข้ามท
+        socket.emit('remote', { action: 'skip' });
+      })
 
     })
   </script>
