@@ -25,16 +25,16 @@
       $(function() {
         var socket = io.connect('http://localhost:8080');
 
-        socket.on('correct', function (data) {
+        socket.on('correct', function() {
           // TODO: event when it is correct
         });
-        socket.on('wrong', function (data) {
+        socket.on('wrong', function() {
           // TODO: event when it is wrong
         });
-        socket.on('next', function (data) {
+        socket.on('next', function() {
           // TODO: event when it is next
         });
-        socket.on('back', function (data) {
+        socket.on('back', function() {
           // TODO: event when it is back
         });
       })

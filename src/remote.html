@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Chayen Remote Controller</title>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <link rel="stylesheet" href="./remote.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chayen Remote Controller</title>
 
-  </head>
-  <body>
+  <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" href="./remote.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+  <div id="before-start">
     <div class="container">
-      <div class="jumbotron">
-        <h1>SKE CHAYEN GAME</h1>
-        <p></p>
+      <div class="center">
+        <div class="row">
+          <h1>SKE CHAYEN GAME</h1>
+        </div>
+        <div class="row">
+        <button type="button" class="btn btn-success start-btn">START</button>
+        </div>
       </div>
     </div>
+  </div>
 
-    <script type="text/javascript">
-      $(function() {
-        var socket = io.connect('http://localhost:8080');
+  <div id="after-start">
 
+  </div>
 
-        // คำสั่งสำหรับส่งไปบอก server ว่าถูก
-        socket.emit('remote', {correct: true});
+  <script type="text/javascript">
+    $(function () {
+      var socket = io.connect('http://localhost:8080');
 
-        // คำสั่งสำหรับส่งไปบอก server ว่าผิด
-        // socket.emit('remote', {correct: false});
+      // คำสั่งสำหรับส่งไปบอก server ว่า start (เริ่มจับเวลา)
+      socket.emit('remote', { action: 'start' });
 
-        // คำสั่งสำหรับส่งไปบอก server ว่า start (เริ่มจับเวลา)
-        socket.emit('question', {action: 'start'});
+      // คำสั่งสำหรับส่งไปบอก server ว่าถูก
+      socket.emit('remote', { action: 'correct' });
 
-        // คำสั่งสำหรับส่งไปบอก server ว่า next (เผื่อกดผิด)
-        socket.emit('question', {action: 'next'});
+      // คำสั่งสำหรับส่งไปบอก server ว่าข้ามท
+      socket.emit('remote', { action: 'skip' });
 
-        // คำสั่งสำหรับส่งไปบอก server ว่า back (เผื่อกดผิด)
-        socket.emit('question', {action: 'back'});
+    })
+  </script>
+</body>
 
-
-
-      })
-    </script>
-  </body>
 </html>
