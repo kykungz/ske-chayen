@@ -38,18 +38,23 @@ const game = {
     time = 0
     score = 0
   },
-  start() {
+  skip () {
+    let index = Math.floor(Math.random() * questions.length)
+    question = questions.splice(index, 1)[0]
+    questions.push(question)
+  },
+  start () {
     this.running = true
-    this.nextQuestion()
-    let timer = setInterval(() => {
-      time += 1000
-      this.update()
-      if (time >= TIME) {
-        clearInterval(timer)
-        this.stop()
-        this.reset()
-      }
-    }, 1000)
+    // this.nextQuestion()
+    // let timer = setInterval(() => {
+    //   time += 1000
+    //   this.update()
+    //   if (time >= TIME) {
+    //     clearInterval(timer)
+    //     this.stop()
+    //     this.reset()
+    //   }
+    // }, 1000)
   },
   stop () {
     this.running = false
@@ -78,10 +83,16 @@ io.on('connection', (socket) => {
     console.log(data)
     switch (data.action) {
       case 'start':
-        if (!game.running) {
+        // if (!game.running) {
+          game.reset()
           game.start()
+          game.nextQuestion()
           io.emit('game', {action: 'start'})
-        }
+          game.update()
+        // }
+        break
+      case 'stop':
+        game.stop()
         break
       case 'correct':
         score++
@@ -89,7 +100,8 @@ io.on('connection', (socket) => {
         game.update()
         break
       case 'skip':
-        game.nextQuestion()
+        // game.nextQuestion()
+        game.skip()
         game.update()
         break
       default:
