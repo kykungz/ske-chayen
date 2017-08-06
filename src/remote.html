@@ -32,17 +32,17 @@
   </div>
 
   <div id="after-start">
-      <div class="fullscreen">
-        <div class="half-horizontal-screen">
-          <button type="button" class="btn btn-success full-horizontal-btn" id="correct"><h3>CORRECT</h3></button>
-        </div>
-        <div class="half-horizontal-screen">
-          <button type="button" class="btn btn-danger full-horizontal-btn" id="skip"><h3>SKIP</h3></button>
-        </div>
+    <div class="fullscreen">
+      <div class="half-horizontal-screen">
+        <button type="button" class="btn btn-success full-horizontal-btn" id="correct"><h3>CORRECT</h3></button>
       </div>
-      <div class="text-center">
-        <button type="button" class="btn btn-primary" style="width:100%; height:5%;" id="newgame"><h1>NEW GAME</h1></button>
+      <div class="half-horizontal-screen">
+        <button type="button" class="btn btn-danger full-horizontal-btn" id="skip"><h3>SKIP</h3></button>
       </div>
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary" style="width:100%; height:5%;" id="newgame"><h1>NEW GAME</h1></button>
+    </div>
   </div>
 
   <script type="text/javascript">
@@ -73,6 +73,10 @@
       $('#skip').click(function () {
         // คำสั่งสำหรับส่งไปบอก server ว่าข้ามท
         socket.emit('remote', { action: 'skip' });
+      })
+
+      $('#newgame').click(function () {
+        socket.emit('remote', { action: 'stop' })
       })
 
     })

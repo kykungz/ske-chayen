@@ -44,7 +44,7 @@
           case 'update':
             var question = data.question // คำถาม
             var score = data.score // คะแนน
-            var time = data.time // เวลา
+            // var time = data.time // เวลา
             if (question != oldquestion) {
               if (count + 1 > bgcolor.length) {
                 count = 0;
@@ -56,7 +56,7 @@
             // TODO: อัพเดทข้อมูล
             $('#q').text(question)
             $('#s').text('Score: ' + score)
-            $('#t').text(time)
+            // $('#t').text(time)
 
             break;
         }

@@ -7,7 +7,7 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
 const PORT = process.env.PORT || 8080
-const TIME = 5 * 60 * 1000
+// const TIME = 5 * 60 * 1000
 let score = 0
 let questions
 let question
@@ -28,14 +28,14 @@ const game = {
     let context = {
       action: 'update',
       question,
-      score,
-      time: TIME/1000 - time/1000
+      score
+      // time: TIME/1000 - time/1000
     }
     io.emit('game', context)
   },
   reset () {
     questions = QUESTIONS.slice()
-    time = 0
+    // time = 0
     score = 0
   },
   skip () {
