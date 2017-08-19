@@ -1,15 +1,19 @@
-# เขียน Frontend หน้า src/index.html ให้หน่อย
-# เขียน Frontend หน้า src/remote.html ให้หน่อย
-# เขียน Frontend หน้า src/status.html ให้หน่อย
+# SKE-CHAYEN GAME
+
+IUP connected 15
 
 # Installation
-Copy คำสั่งไปวาง
-```
-git clone https://github.com/kykungz/ske-chayen.git && cd ske-chayen && npm install
-```
+install npm
 
-เวลาจะรันพิมว่า
-```
+# Run Server
 npm start
-```
-จะออกก็ Ctrl+C
+
+
+# Contributors
+
+SKE 14
+
+[Kykungz](https://github.com/kykungz)
+[Thitgorn](https://github.com/thitgorn)
+[winChawakorn](https://github.com/winChawakorn)
+[JirayuL](https://github.com/JirayuL)
